@@ -1,0 +1,61 @@
+<?php
+
+/**
+ * Implements hook_menu().
+ */
+function imagestyleflush_menu() {
+  $items['admin/config/media/image-styles/flush'] = array(
+    'title' => 'Flush all styles',
+    'description' => 'Flush all image styles.',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('imagestyleflush_form'),
+    'access arguments' => array('administer image styles'),
+    'type' => MENU_LOCAL_ACTION,
+    'weight' => 3,
+  );
+
+  return $items;
+}
+
+/**
+ * Flush all image styles form
+ */
+function imagestyleflush_form($form, &$form_state) {
+  return confirm_form(
+    NULL,
+    t('Are you sure you want to flush all image styles?'),
+    'admin/config/media/image-styles',
+     t('This action cannot be undone.'),
+    t('Flush'),  t('Cancel')
+  );
+}
+
+/**
+ * Flush all image styles form submit
+ */
+function imagestyleflush_form_submit($form, &$form_state) {
+
+  foreach (image_styles() as $style) {
+    $operations[] = array('image_style_flush', array($style));
+  }
+
+  $batch = array(
+    'operations' => $operations,
+    'finished' => 'imagestyleflush_batch_finished',
+  );
+
+  batch_set($batch);
+}
+
+/**
+ * Batch message
+ */
+function imagestyleflush_batch_finished($success, $results, $operations) {
+  if ($success) {
+    drupal_set_message('Image styles was successfully flushed.');
+  }
+  else {
+    drupal_set_message('There are some errors occured.', 'error');
+  }
+  drupal_goto('admin/config/media/image-styles');
+}

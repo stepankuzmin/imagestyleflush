@@ -1,0 +1,5 @@
+name = Image style flush
+description = Flush all image styles in Drupal 7.
+package = Media
+core = 7.x
+configure = admin/config/media/image-styles
