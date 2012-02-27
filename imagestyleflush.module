@@ -26,7 +26,7 @@ function imagestyleflush_form($form, &$form_state) {
     t('Are you sure you want to flush all image styles?'),
     'admin/config/media/image-styles',
      t('This action cannot be undone.'),
-    t('Flush'),  t('Cancel')
+    t('Flush'), t('Cancel')
   );
 }
 

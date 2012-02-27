@@ -1,7 +1,7 @@
 Image style flush
 =============
 
-Easiest way to flush all image styles in Drupal 7.
+Easiest way to flush image styles in Drupal 7.
 
 Download
 -----------
