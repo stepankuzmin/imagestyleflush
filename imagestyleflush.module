@@ -52,10 +52,10 @@ function imagestyleflush_form_submit($form, &$form_state) {
  */
 function imagestyleflush_batch_finished($success, $results, $operations) {
   if ($success) {
-    drupal_set_message('Image styles was successfully flushed.');
+    drupal_set_message(t('Image styles was successfully flushed.'));
   }
   else {
-    drupal_set_message('There are some errors occured.', 'error');
+    drupal_set_message(t('There are some errors occured.', 'error'));
   }
   drupal_goto('admin/config/media/image-styles');
 }
