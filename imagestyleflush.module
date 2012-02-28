@@ -35,8 +35,7 @@ function imagestyleflush_theme_registry_alter(&$theme_registry) {
  * theme_image_style_list() override function
  */
 function imagestyleflush_image_style_list($variables) {
-  //$output = theme_image_style_list($variables);
-  
+  // $output = theme_image_style_list($variables);
   $styles = $variables['styles'];
 
   $header = array(t('Style name'), t('Settings'), array('data' => t('Operations'), 'colspan' => 3));
@@ -74,7 +73,7 @@ function imagestyleflush_image_style_list($variables) {
     $rows[] = array(array(
       'colspan' => 4,
       'data' => t('There are currently no styles. <a href="!url">Add a new one</a>.', array('!url' => url('admin/config/media/image-styles/add'))),
-    ));
+      ));
   }
 
   return theme('table', array('header' => $header, 'rows' => $rows));
@@ -90,7 +89,7 @@ function imagestyleflush_form($form, &$form_state, $style = NULL) {
         'style_name' => array(
           '#type' => 'value',
           '#value' => $style['name'],
-        )
+        ),
       ),
       t('Are you sure you want to flush @style image style?', array('@style' => $style['name'])),
       'admin/config/media/image-styles',
@@ -141,7 +140,7 @@ function imagestyleflush_batch_finished($success, $results, $operations) {
     drupal_set_message(t('Image styles was successfully flushed.'));
   }
   else {
-    drupal_set_message(t('There are some errors occured.', 'error'));
+    drupal_set_message(t('An error occurred while flushing the image caches.', 'error'));
   }
   drupal_goto('admin/config/media/image-styles');
 }
