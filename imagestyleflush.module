@@ -1,6 +1,11 @@
 <?php
 
 /**
+ * @file
+ * functionality for flushing image styles.
+ */
+
+/**
  * Implements hook_menu().
  */
 function imagestyleflush_menu() {
@@ -25,7 +30,7 @@ function imagestyleflush_menu() {
 }
 
 /**
- * Implements hook_theme_registry_alter()
+ * Implements hook_theme_registry_alter().
  */
 function imagestyleflush_theme_registry_alter(&$theme_registry) {
   $theme_registry['image_style_list']['function'] = 'imagestyleflush_image_style_list';
