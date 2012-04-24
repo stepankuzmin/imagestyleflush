@@ -37,10 +37,11 @@ function imagestyleflush_theme_registry_alter(&$theme_registry) {
 }
 
 /**
- * theme_image_style_list() override function
+ * theme_image_style_list() override function.
+ *
+ * @see image.admin.inc
  */
 function imagestyleflush_image_style_list($variables) {
-  // $output = theme_image_style_list($variables);
   $styles = $variables['styles'];
 
   $header = array(t('Style name'), t('Settings'), array('data' => t('Operations'), 'colspan' => 3));
@@ -85,7 +86,13 @@ function imagestyleflush_image_style_list($variables) {
 }
 
 /**
- * Flush all image styles form
+ * Form constructor for the confirm form.
+ *
+ * @param $style
+ *   Associative array can contain a style name. Optional.
+ *
+ * @see imagestyleflush_form_submit()
+ * @ingroup forms
  */
 function imagestyleflush_form($form, &$form_state, $style = NULL) {
   if (isset($style)) {
@@ -116,7 +123,9 @@ function imagestyleflush_form($form, &$form_state, $style = NULL) {
 }
 
 /**
- * Flush all image styles form submit
+ * Form submission handler for imagestyleflush_form().
+ *
+ * @see imagestyleflush_form()
  */
 function imagestyleflush_form_submit($form, &$form_state) {
   if (isset($form_state['values']['style_name'])) {
@@ -138,7 +147,7 @@ function imagestyleflush_form_submit($form, &$form_state) {
 }
 
 /**
- * Batch message
+ * Batch message.
  */
 function imagestyleflush_batch_finished($success, $results, $operations) {
   if ($success) {
